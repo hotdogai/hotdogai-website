@@ -1,0 +1,138 @@
+// main: ../style.less
+
+.cleafix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.main_block {
+  width:100%;
+  float:left;
+}
+.size(@width, @height) {
+  width: @width;
+  height: @height;
+}
+.square(@width) {
+  width: @width;
+  height: @width;
+}
+.translate(@x; @y) {
+  -webkit-transform: translate(@x, @y);
+  -ms-transform: translate(@x, @y); // IE9 only
+  -o-transform: translate(@x, @y);
+  transform: translate(@x, @y);
+}
+.transition(@transition) {
+  -webkit-transition: @transition;
+  -o-transition: @transition;
+  transition: @transition;
+}
+.box-sizing(@boxmodel) {
+  -webkit-box-sizing: @boxmodel;
+  -moz-box-sizing: @boxmodel;
+  box-sizing: @boxmodel;
+}
+.width-calc(@calc) {
+  width: -webkit-calc(@calc);
+  width: -moz-calc(@calc);
+  width: calc(@calc);
+}
+.height-calc(@calc) {
+  height: -webkit-calc(@calc);
+  height: -moz-calc(@calc);
+  height: calc(@calc);
+}
+.left-calc(@calc) {
+  left: -webkit-calc(@calc);
+  left: -moz-calc(@calc);
+  left: calc(@calc);
+}
+.placeholder(@color: @input-color-placeholder) {
+  // Firefox
+  &::-moz-placeholder {
+    color: @color;
+    opacity: 1; // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526
+  }
+  &:-ms-input-placeholder { color: @color; } // Internet Explorer 10+
+  &::-webkit-input-placeholder  { color: @color; } // Safari and Chrome
+}
+.border-radius(@b__radius) {
+  -moz-border-radius: @b__radius;
+  -webkit-border-radius: @b__radius;
+  -khtml-border-radius: @b__radius;
+  border-radius: @b__radius;
+}
+.horizontal(@start-color; @end-color; @start-percent: 0%; @end-percent: 100%) {
+  background-image: -webkit-linear-gradient(left, @start-color @start-percent, @end-color @end-percent); // Safari 5.1-6, Chrome 10+
+  background-image: -o-linear-gradient(left, @start-color @start-percent, @end-color @end-percent); // Opera 12
+  background-image: linear-gradient(to right, @start-color @start-percent, @end-color @end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+  background-repeat: repeat-x;
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",argb(@start-color),argb(@end-color))); // IE9 and down
+}
+.vertical(@start-color; @end-color; @start-percent: 0%; @end-percent: 100%) {
+  background-image: -webkit-linear-gradient(top, @start-color @start-percent, @end-color @end-percent);  // Safari 5.1-6, Chrome 10+
+  background-image: -o-linear-gradient(top, @start-color @start-percent, @end-color @end-percent);  // Opera 12
+  background-image: linear-gradient(to bottom, @start-color @start-percent, @end-color @end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+  background-repeat: repeat-x;
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color))); // IE9 and down
+}
+.opacity(@opacity) {
+  opacity: @opacity;
+  // IE8 filter
+  @opacity-ie: (@opacity * 100);
+  filter: ~"alpha(opacity=@{opacity-ie})";
+}
+.rotate(@degrees) {
+  -webkit-transform: rotate(@degrees);
+  -ms-transform: rotate(@degrees); // IE9 only
+  -o-transform: rotate(@degrees);
+  transform: rotate(@degrees);
+}
+.rotateY(@degrees) {
+  -webkit-transform: rotateY(@degrees);
+  -ms-transform: rotateY(@degrees); // IE9 only
+  -o-transform: rotateY(@degrees);
+  transform: rotateY(@degrees);
+}
+.scale(@ratio) {
+  -webkit-transform: scale(@ratio);
+  -ms-transform: scale(@ratio); // IE9 only
+  -o-transform: scale(@ratio);
+  transform: scale(@ratio);
+}
+.box-shadow (@string) {
+  -webkit-box-shadow: @string;
+  -moz-box-shadow:    @string;
+  box-shadow:         @string;
+}
+
+//General
+html, body {
+  .square(100%);
+}
+* {
+  .box-sizing(border-box);
+}
+body {
+  margin:0;
+}
+a, button, input {
+  color: inherit;
+  &:hover, &:focus, &:active {
+    color: inherit;
+    outline: none;
+  }
+}
+ul,ol {
+  padding: 0;
+  margin: 0;
+}
+.center {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+}
